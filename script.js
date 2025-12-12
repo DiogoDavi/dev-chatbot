@@ -1,34 +1,37 @@
 const ws = new WebSocket("wss://didbot-server.onrender.com");
 
-const chat = document.getElementById("chat");
+const chatBox = document.getElementById("chat");
+const input = document.getElementById("input");
+const sendBtn = document.getElementById("send");
 
-ws.onmessage = (event) => {
-  addMessage(event.data, "bot");
-};
-
-function addMessage(text, type) {
-  const div = document.createElement("div");
-  div.className = "msg " + type;
-
-  if (type === "bot") {
-    div.innerHTML = `
-      <img src="./diogo-avatar.jpeg" class="avatar" alt="Bot Avatar">
-      <div>${text}</div>
-    `;
-  } else {
-    div.innerHTML = `<div>${text}</div>`;
-  }
-
-  chat.appendChild(div);
-  chat.scrollTop = chat.scrollHeight;
+function formatText(text) {
+  return text
+    .replace(/(\d+\.)/g, "<br><br><strong>$1</strong>") 
+    .replace(/\n/g, "<br>");
 }
 
-function send() {
-  const input = document.getElementById("msg");
+function addMessage(message, sender) {
+  const div = document.createElement("div");
+  div.className = sender === "user" ? "user-message" : "bot-message";
+  div.innerHTML = message;
+  chatBox.appendChild(div);
+  chatBox.scrollTop = chatBox.scrollHeight;
+}
+
+sendBtn.onclick = () => {
   const text = input.value.trim();
   if (!text) return;
 
-  ws.send(text);
   addMessage(text, "user");
+  ws.send(text);
   input.value = "";
-}
+};
+
+ws.onmessage = (event) => {
+  const formatted = formatText(event.data);
+  addMessage(formatted, "bot");
+};
+
+input.addEventListener("keypress", (e) => {
+  if (e.key === "Enter") sendBtn.click();
+});
