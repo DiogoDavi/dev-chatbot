@@ -5,9 +5,18 @@ const input = document.getElementById("input");
 const sendBtn = document.getElementById("send");
 
 function formatText(text) {
-  return text
-    .replace(/(\d+\.)/g, "<br><br><strong>$1</strong>") 
-    .replace(/\n/g, "<br>");
+  const lines = text.split(/\r?\n/);
+
+  const formattedLines = lines.map((line) => {
+    const trimmed = line.trim();
+    if (!trimmed) return "";
+    if (/^\d+\.\s*/.test(trimmed)) {
+      return `<br><br><strong>${trimmed.match(/^\d+\./)[0]}</strong> ${trimmed.replace(/^\d+\.\s*/, "")}`;
+    }
+    return trimmed;
+  });
+
+  return formattedLines.join("<br>");
 }
 
 function addMessage(message, sender) {
@@ -21,7 +30,6 @@ function addMessage(message, sender) {
 sendBtn.onclick = () => {
   const text = input.value.trim();
   if (!text) return;
-
   addMessage(text, "user");
   ws.send(text);
   input.value = "";
