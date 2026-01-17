@@ -77,7 +77,7 @@ didbot-chat/
 ## 📸 Preview
 version Web
 
-![Calculadora Stitch - Desktop](./preview/chatbot-mobile.png)
+![dev-chatbot](./chatbot-mobile.png)
 
 ---
 
