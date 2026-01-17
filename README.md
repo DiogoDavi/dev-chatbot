@@ -75,9 +75,14 @@ didbot-chat/
 ---
 
 ## 📸 Preview
-version Web
+Version Web
+
+![dev-chatbot](./chatbot-desktop.png)
+
+Version Mobile
 
 ![dev-chatbot](./chatbot-mobile.png)
+
 
 ---
 
