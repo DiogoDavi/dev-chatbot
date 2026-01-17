@@ -112,9 +112,8 @@ Apenas configure a variável de ambiente `GROQ_API_KEY` na plataforma.
 
 👨‍💻 Desenvolvido por **Diogo David**
 
-Atualmente atuo como **Analista de Logística**, em transição para a área de **Desenvolvimento de Software**, com foco em backend, integração de APIs e aplicações com IA.
+Atualmente atuo como **Analista de Logística**, em transição para a área de **Desenvolvimento de Software**, com foco em backend (foco em JAVA), integração de APIs e aplicações com IA.
 
-📧 Contato: [diogopb_25@hotmail.com](mailto:diogopb_25@hotmail.com)
 
 ---
 
